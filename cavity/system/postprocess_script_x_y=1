@@ -121,8 +121,8 @@ sets
         type        lineCell;
         axis        xyz;
 
-        start       (0.0 0.1 0.005);
-        end         (0.1 0.1 0.005);
+        start       (0.0 1 0.005);
+        end         (1 1 0.005);
     }
 );
 
