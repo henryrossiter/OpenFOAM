@@ -21,22 +21,22 @@ FoamFile
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          20;
-        startFace       760;
+        nFaces          160;
+        startFace       50880;
     }
     fixedWalls
     {
         type            wall;
         inGroups        List<word> 1(wall);
-        nFaces          60;
-        startFace       780;
+        nFaces          480;
+        startFace       51040;
     }
     frontAndBack
     {
         type            empty;
         inGroups        List<word> 1(empty);
-        nFaces          800;
-        startFace       840;
+        nFaces          51200;
+        startFace       51520;
     }
 )
 
