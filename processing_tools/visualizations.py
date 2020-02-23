@@ -17,8 +17,8 @@ def big_plot(title="", fontsize=12, threeD=False):
 
 def velocity_comps_2D(x,y,u,v,gridsize=10):
     ##Plots u and v velocity components for final timestep against y poisition
-    plot_title = (r"Plot of $\tilde{u}(\tilde{x}=0.5,y)$ and $\tilde{v}(\tilde{x}=0.5,y)$" 
-        r" for $0 \leq y \leq 1$ with a grid size of "  + str(gridsize)+"x"+str(gridsize))
+    plot_title = (r"Plot of $\tilde{u}(\tilde{x}=0.05,y)$ and $\tilde{v}(\tilde{x}=0.05,y)$" 
+        r" for $0 \leq y \leq 0.1$ with a grid size of "  + str(gridsize)+"x"+str(gridsize))
 
     fig, ax = big_plot(plot_title)
     ax.scatter(y, u, label=r"$\tilde{u}(\tilde{x}=0.5,y)$")
@@ -32,8 +32,8 @@ def velocity_comps_2D_times(x,y,u,v,t,gridsize=10):
     ##Plots u and v velocity components in every timestep against y position
     ##Final vizualization definitely needs work
 
-    plot_title = (r"Plot of $\tilde{u}(\tilde{x}=0.5,y)$ and $\tilde{v}(\tilde{x}=0.5,y)$" 
-        r" for $0 \leq y \leq 1$ with a grid size of "  + str(gridsize)+"x"+str(gridsize) + " over all timesteps")
+    plot_title = (r"Plot of $\tilde{u}(\tilde{x}=0.05,y)$ and $\tilde{v}(\tilde{x}=0.05,y)$" 
+        r" for $0 \leq y \leq 0.1$ with a grid size of "  + str(gridsize)+"x"+str(gridsize) + " over all timesteps")
 
     fig, ax = big_plot(plot_title,threeD=True)
 
@@ -43,3 +43,13 @@ def velocity_comps_2D_times(x,y,u,v,t,gridsize=10):
     ax.set_ylabel(r"Velocity (m/s)")
     ax.legend()
     fig.savefig("VeloPlot_" + str(gridsize) + "grid.png")
+
+def clocktime_vs_gridsize(gridsizes, clocktimes):
+    plot_title = (r"C vs. N")
+    fig, ax = big_plot(plot_title)
+    gridsizes = [num ** 2 for num in gridsizes]
+
+    ax.loglog(clocktimes, gridsizes)
+    ax.set_xlabel(r"Wallclock Time (seconds)")
+    ax.set_ylabel(r"Number of Grid Points")
+    fig.savefig("ClocktimeVGridsize.png")

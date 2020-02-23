@@ -1,9 +1,11 @@
-from visualizations import velocity_comps_2D_times, velocity_comps_2D
+from visualizations import *
 from post_process_functions import process_vel_xy
 import numpy as np
+from scipy.stats import linregress
 
 gridsizes = [20,40,80,160]
-timesteps = [0.5, .25, .125, .0625]
+timesteps = [0.005, .0025, .00125, .000625]
+clocktimes = [1.704, 5.217, 21.01, 224.815]
 threedim = False
 
 if threedim:
@@ -48,9 +50,9 @@ else:
 
         velocity_comps_2D(x,y,u,v,grid)
 
+clocktime_vs_gridsize(gridsizes, clocktimes)
 
+regression = linregress(np.log(gridsizes), np.log(clocktimes))
+alpha = regression[0]
 
-
-
-
-
+print("The alpha value is ", alpha)
