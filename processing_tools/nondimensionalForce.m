@@ -1,16 +1,31 @@
-x = [0.0025:0.005:.0975];
-U_95 = [.28637, .294, .21, .143, .09687, .06551, .04403, .02874, .0171, .007436, -.001499, -.0108, -.02175, -.0362, -.057, -.08904, -.1392, -.2155, -.3109, -.3048];
-U_1 = [0.14889, .1279, .0758, .04338,.02524, .01495 .008987, .00535, .002925, .001099, -.000502, -.002171, -.004241, -.00726, -.01229, -.02146, -.0389, -.0723, -.1283, -.1522];
+x = linspace(0,.1,20);
 Tau = zeros(1,length(x));
+data_95 = importdata('center_cavity_U_y=.95_re=500.xy');
+data_99 = importdata('center_cavity_U_y=.99_re=500.xy');
+U_95 = data_95(:,5);
+U_99 = data_99(:,5);
+re = [10, 50, 100, 500];
+formatspecs_95 = "center_cavity_U_y=.95_re=%d%s";
+formatspecs_99 = "center_cavity_U_y=.99_re=%d%s";
+filetype = '.xy';
 
-for i = 1:length(x)
-   Tau(i) = (U_1(i)-U_95(i))/(0.05); 
+for j = 1:4
+    Re = re(j);
+    filename_95 = sprintf(formatspecs_95,Re,filetype);
+    filename_99 = sprintf(formatspecs_99,Re,filetype);
+    data_95 = importdata(filename_95);
+    data_99 = importdata(filename_99);
+    U_95 = data_95(:,5);
+    U_99 = data_99(:,5);
+    for i = 1:length(x)
+        Tau(j,i) = (U_99(i)-U_95(i))/(0.04); 
+    end   
 end
 
-figure
-plot((x.*10), Tau)
-title("Stress along cavity lid, Re = 10")
-xlabel("X (m)")
-ylabel("Tau (N/m)")
+    figure
+    plot((x.*10), Tau(1,:))
+    title("Stress along cavity lid, variable Re")
+    xlabel("X (m)")
+    ylabel("Tau (N/m)")
 
 
