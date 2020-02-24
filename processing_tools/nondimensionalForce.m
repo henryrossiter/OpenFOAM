@@ -29,7 +29,7 @@ end
 
 F = zeros(1,length(re));
 for i=1:length(F)
-    F(i) = trapz(Tau(i,:));
+    F(i) = trapz(x,Tau(i,:));
 end
 figure
 plot(re,F)
