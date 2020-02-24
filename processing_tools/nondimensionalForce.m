@@ -8,7 +8,6 @@ re = [10, 50, 100, 500];
 formatspecs_95 = "center_cavity_U_y=.95_re=%d%s";
 formatspecs_99 = "center_cavity_U_y=.99_re=%d%s";
 filetype = '.xy';
-
 for j = 1:4
     Re = re(j);
     filename_95 = sprintf(formatspecs_95,Re,filetype);
@@ -19,7 +18,7 @@ for j = 1:4
     U_99 = data_99(:,5);
     for i = 1:length(x)
         Tau(j,i) = (U_99(i)-U_95(i))/(0.04); 
-    end   
+    end
 end
 
     figure
@@ -28,4 +27,12 @@ end
     xlabel("X (m)")
     ylabel("Tau (N/m)")
 
-
+F = zeros(1,length(re));
+for i=1:length(F)
+    F(i) = trapz(x,Tau(i,:));
+end
+figure
+plot(re,F)
+title("Force v. Re")
+xlabel("Re")
+ylabel("Force (N)")
