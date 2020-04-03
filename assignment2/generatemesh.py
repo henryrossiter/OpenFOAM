@@ -274,7 +274,7 @@ vertices
 ( """)
 
     for number, point in points.items():
-        f.write("\t" + str(point) + "\n")
+        f.write("\t" + str(point).replace(',', '') + "\n")
 
     f.write("""
 );
@@ -284,8 +284,8 @@ blocks
 """)
 
     for key, block in blocks.items():
-        f.write("\thex("  + str(block.l1) + " "+str(block.l2) + " "+str(block.l3) + " "+str(block.l4) + 
-            " "+str(block.l5) + " "+str(block.l6) + " "+str(block.l7) + " "+str(block.l8) + 
+        f.write("\thex ("  + str(block.l1).replace(',', '') + " "+str(block.l2).replace(',', '') + " "+str(block.l3).replace(',', '') + " "+str(block.l4).replace(',', '') + 
+            " "+str(block.l5).replace(',', '') + " "+str(block.l6).replace(',', '') + " "+str(block.l7).replace(',', '') + " "+str(block.l8).replace(',', '') + 
             ") (10 20 1) simpleGrading (2.0 1.0 1.0) \n")
 
     f.write(""");
@@ -295,7 +295,7 @@ edges
 
     for key, block in blocks.items():
         for i, arc in block.arcdict.items():
-            f.write("\tarc " + str(arc[0])  + " "+ str(arc[1]) + " " + str(arc[2]) + "\n")
+            f.write("\tarc " + str(arc[0]).replace(',', '')  + " "+ str(arc[1]).replace(',', '') + " " + str(arc[2]).replace(',', '') + "\n")
 
     f.write("""
 );
@@ -312,7 +312,7 @@ boundary
 
     for key, block in blocks.items():
         for inlet in block.facedict["inlet"]:
-            f.write("\t\t" + str(inlet) + "\n")
+            f.write("\t\t" + str(inlet).replace(',', '') + "\n")
 
 
     f.write(""" 
@@ -328,7 +328,7 @@ boundary
 
     for key, block in blocks.items():
         for inlet in block.facedict["outlet"]:
-            f.write("\t\t" + str(inlet) + "\n")
+            f.write("\t\t" + str(inlet).replace(',', '') + "\n")
 
 
     f.write("""
@@ -343,7 +343,7 @@ boundary
 """)
     for key, block in blocks.items():
         for inlet in block.facedict["cylinder"]:
-            f.write("\t\t" + str(inlet) + "\n")
+            f.write("\t\t" + str(inlet).replace(',', '') + "\n")
 
     f.write("""
       );
@@ -359,7 +359,7 @@ boundary
 
     for key, block in blocks.items():
         for inlet in block.facedict["top"]:
-            f.write("\t\t" + str(inlet) + "\n")
+            f.write("\t\t" + str(inlet).replace(',', '') + "\n")
     
     f.write("""
       );
@@ -375,7 +375,7 @@ boundary
 
     for key, block in blocks.items():
         for inlet in block.facedict["bottom"]:
-            f.write("\t\t" + str(inlet) + "\n")
+            f.write("\t\t" + str(inlet).replace(',', '') + "\n")
 
 
     f.write("""
