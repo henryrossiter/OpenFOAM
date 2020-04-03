@@ -286,7 +286,7 @@ blocks
     for key, block in blocks.items():
         f.write("\thex ("  + str(block.l1).replace(',', '') + " "+str(block.l2).replace(',', '') + " "+str(block.l3).replace(',', '') + " "+str(block.l4).replace(',', '') + 
             " "+str(block.l5).replace(',', '') + " "+str(block.l6).replace(',', '') + " "+str(block.l7).replace(',', '') + " "+str(block.l8).replace(',', '') + 
-            ") (10 20 1) simpleGrading (2.0 1.0 1.0) \n")
+            ") (10 10 1) simpleGrading (1.0 1.0 1.0) \n")
 
     f.write(""");
 
