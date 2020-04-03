@@ -251,7 +251,7 @@ def main():
     #plt.show()
 
     #writes blockmeshdict file
-    to_file("BlockMeshDict", points, blocks)
+    to_file("blockMeshDict", points, blocks)
 
 
 def to_file(filename, points, blocks):
