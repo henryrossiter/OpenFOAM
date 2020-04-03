@@ -71,36 +71,10 @@ class Block:
         elif self.points[face[0]][1] == self.points[face[1]][1] == self.points[face[2]][1] == self.points[face[3]][1] == - self.boxsize/2:
             label = "inlet"
         elif (c2pT(self.points[face[0]])[1]  < 0.51 and c2pT(self.points[face[1]])[1] < 0.51 and c2pT(self.points[face[2]])[1] < 0.51 and c2pT(self.points[face[0]])[1] <0.51):
-            print(c2pT(self.points[face[0]])[1] , c2pT(self.points[face[1]])[1] , c2pT(self.points[face[2]])[1] , c2pT(self.points[face[0]])[1])
             label = "cylinder"
         else:
             label = "useless"
         return label
-
-
-""" 
-
-        for vertex in face:
-            
-            
-            r = cartesian_to_polar(self.points[vertex][0],self.points[vertex][1],self.points[vertex][2])[1]
-            label = "useless"
-            if self.points[vertex][0] == self.boxsize / 2:
-                counter["outlet"] += 1
-            elif self.points[vertex][0] == - self.boxsize / 2:
-                counter["inlet"] += 1
-            elif self.points[vertex][1] == self.boxsize / 2:
-                counter["top"] += 1
-            elif self.points[vertex][1] == - self.boxsize / 2:
-                counter["bottom"] += 1
-            elif r <  0.6:
-                counter["cylinder"] += 1
-
-        val=list(counter.values())
-        key=list(counter.keys())
-        print(key[val.index(max(val))])
-        return key[val.index(max(val))] """
-
 
 def polar_to_cartesian(theta, r, z):
     x = r*np.cos(theta)
@@ -251,7 +225,7 @@ def main():
     #plt.show()
 
     #writes blockmeshdict file
-    to_file("blockMeshDict", points, blocks)
+    to_file("circular-cylinder/system/blockMeshDict", points, blocks)
 
 
 def to_file(filename, points, blocks):
@@ -286,7 +260,7 @@ blocks
     for key, block in blocks.items():
         f.write("\thex ("  + str(block.l1).replace(',', '') + " "+str(block.l2).replace(',', '') + " "+str(block.l3).replace(',', '') + " "+str(block.l4).replace(',', '') + 
             " "+str(block.l5).replace(',', '') + " "+str(block.l6).replace(',', '') + " "+str(block.l7).replace(',', '') + " "+str(block.l8).replace(',', '') + 
-            ") (10 10 1) simpleGrading (1.0 1.0 1.0) \n")
+            ") (2 2 1) simpleGrading (1.0 1.0 1.0) \n")
 
     f.write(""");
 
