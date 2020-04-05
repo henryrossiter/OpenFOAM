@@ -85,7 +85,7 @@ def polar_to_cartesian(theta, r, z):
 def cartesian_to_polar(x,y,z):
     r = np.sqrt(np.square(x) + np.square(y))
 
-    theta = np.arctan(y/x)
+    theta = np.arctan2(y,x)
     x = z
     return np.around(theta,3), np.around(r,3), z
 
