@@ -31,7 +31,8 @@ class Block:
         theta1, r1, z1 = cartesian_to_polar(self.points[p1][0], self.points[p1][1], self.points[p1][2])
         theta2, r2, z2 = cartesian_to_polar(self.points[p2][0], self.points[p2][1], self.points[p2][2])
         if np.isclose(r1,r2,1e-3,1e-3):
-            newtheta = np.mean(np.asarray([theta1, theta2]))
+            mean = np.mean(np.asarray([theta1, theta2]))
+            newtheta = mean + np.pi if theta1*theta2 < 0 else mean
             x,y,z = polar_to_cartesian(newtheta,r1,z1) #assumes arcs in same z plane
 
             self.arccount = next(self._arcnum)
