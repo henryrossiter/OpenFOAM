@@ -51,5 +51,4 @@ runTimeModifiable true;
 functions 
 { 
     #includeFunc  probes 
-    #includeFunc  singleGraph 
 }
