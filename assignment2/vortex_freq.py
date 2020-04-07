@@ -14,8 +14,8 @@ args = parser.parse_args()
 def read_file(data_file):
 	while '#' in data_file.readline():
 		pass
-	t = [0]
-	u = [0.0]
+	t = []
+	u = []
 	for line in data_file:
 		time, vel = line.strip().split('(')
 		t.append(float(time.strip()))
