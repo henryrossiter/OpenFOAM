@@ -50,8 +50,8 @@ def main():
 		plt.show()
 
 		# Fourier transform on the data
-		freq = fftshift(fftfreq(len(time)))
-		u = fftshift(fft(velocity))
+		freq = fftfreq(len(time))
+		u = fft(velocity)
 
 		# plot the transform and find frequency of peak
 		plt.figure()
