@@ -12,15 +12,22 @@ args = parser.parse_args()
 # reads probe file and returns time and velocity
 #==================================================
 def read_file(data_file):
-	while '#' in data_file.readline():
-		pass
 	t = []
 	u = []
+	count = 0
+	while '#' in data_file.readline():
+		count+=1
+		u.append([])
+		pass
+	u.pop()
+	u.pop()	
 	for line in data_file:
-		time, vel = line.strip().split('(')
+		time = line.strip().split()[0]
+		vels = line.strip().split('(')[1:]
 		t.append(float(time.strip()))
-		mag_v = math.sqrt(sum(float(i)**2 for i in vel.strip(')').split()))
-		u.append(mag_v)
+		for i,vel in enumerate(vels):
+			mag_v = math.sqrt(sum(float(i)**2 for i in vel.strip().strip(')').split()))
+			u[i].append(mag_v)
 	return t,u
 
 
@@ -31,23 +38,26 @@ def main():
 	else:
 		path = args.data
 	data_file = open(path,'r')
-	time, velocity = read_file(data_file)
+	time, vel = read_file(data_file)
 	data_file.close()
-	# plot velocity vs. time
-	plt.figure()
-	plt.plot(time,velocity)
-	plt.xlabel('time')
-	plt.ylabel('velocity')
-	plt.show()
+	for i,velocity in enumerate(vel):
+		# plot velocity vs. time
+		plt.figure()
+		plt.plot(time,velocity)
+		plt.xlabel('time')
+		plt.ylabel('velocity')
+		plt.title('Probe '+str(i))
+		plt.show()
 
-	# Fourier transform on the data
-	freq = fftshift(fftfreq(len(time)))
-	u = fftshift(fft(velocity))
+		# Fourier transform on the data
+		freq = fftshift(fftfreq(len(time)))
+		u = fftshift(fft(velocity))
 
-	# plot the transform and find frequency of peak
-	plt.figure()
-	plt.plot(freq,u.real,freq,u.imag)
-	plt.xlabel('frequency')
-	plt.ylabel('power spectral density')
-	plt.show()
+		# plot the transform and find frequency of peak
+		plt.figure()
+		plt.plot(freq,u.real,freq,u.imag)
+		plt.xlabel('frequency')
+		plt.ylabel('power spectral density')
+		plt.title('Probe '+str(i))
+		plt.show()
 main()
