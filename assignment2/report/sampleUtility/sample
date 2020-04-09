@@ -1,0 +1,53 @@
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      sampleDict;
+}
+
+type sets;
+setFormat raw;
+surfaceFormat raw;
+interpolationScheme cell;
+fields
+(
+    p
+    U
+);
+
+sets
+(
+    sampleLine1
+    {
+        type        lineCell;
+        axis        xyz;
+
+        start       (0.354 0.354 0.5);
+        end         (1.768 1.768 0.5);
+    }
+    sampleLine2
+    {
+        type        lineCell;
+        axis        xyz;
+
+        start       (0.0 0.5 0.5);
+        end         (0.0 2.5 0.5);
+    }
+    sampleLine3
+    {
+        type        lineCell;
+        axis        xyz;
+
+        start       (-0.354 0.354 0.5);
+        end         (-1.768 1.768 0.5);
+    }
+    xAxisSample
+    {
+        type        lineCell;
+        axis        xyz;
+
+        start       (0.5 0.5 0.5);
+        end         (8.0 0.5 0.5);
+    }
+);
