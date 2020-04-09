@@ -51,11 +51,16 @@ def main():
 		v_r_val = dot(vel,r)
 		v_r.append(v_r_val)
 		v_theta.append(v_mag-v_r_val)
-	plt.plot(d,v_r,label='radial velocity')
-	plt.plot(d,v_theta,label='tangential velocity')
+	plt.figure()
 	plt.title(title)
 	plt.xlabel('distance from the wall')
 	plt.ylabel('velocity')
+	plt.plot(d,v_r,label='r vel')
+	plt.plot(d,v_theta,label='theta vel')
+	plt.legend()
 	plt.show()
+
+	# calculating strain length
+	
 
 main()
